@@ -24,6 +24,6 @@ Simply clone the repo and edit the content where you recognize the markdown synt
 
 For TODOs, I use a `todos` object to enable selections. Currently you have to call addTodo method to in the last `<script>` environment.
 
-## TODO:
+## TODO
 - [ ] enable multiple tags for one todo.
 - [ ] automatically generate selection buttons

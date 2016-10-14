@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<title>Log</title>
+<head>
+	<link rel="stylesheet" href="../src/themes/darkly.min.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+<script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script>
+</head>
+
+<xmp id="source" style="display:none;">
+  #Autumn 2016
+  ## Deadlines
+  - [ ] **2016-12-15**
+  ##Week 4 
+  Nothing here.
+  ##[Week 5](template.html) 
+  ### TODO:
+  - [ ] [this is a link to google](https://www.google.com/) 
+  - [x] This is a finished TODO
+
+<!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
+</xmp>
+<body>
+<div class="container">
+  <div id="target"></div>
+</div>  
+</body>
+
+<script src="../src/showdown.min.js"></script>
+<script>    
+  var text = document.getElementById('source').innerHTML;
+      target = document.getElementById('target');
+      converter = new showdown.Converter(
+      	{tasklists: 'true',
+      	smartIndentationFix: 'true',
+      	strikethrough: 'true'});
+      html = converter.makeHtml(text);
+      // console.log(html)
+    target.innerHTML = html;
+</script>
+</html>
