@@ -33,7 +33,7 @@
   <a href="#" class="btn btn-default btn-lg btn-block" id="clock" style="font-size:50px"></a>
 
   	<div class="btn-group">
-      <a href="#" class="btn btn-success">Select date</a>
+      <a href="#" class="btn btn-success" id="btn-date">All dates</a>
       <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
       <ul class="dropdown-menu" id="btn-group-date">
         <li><a onclick="selectDateClicked(this)">All dates</a></li>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="btn-group">
-      <a href="#" class="btn btn-success">Select status</a>
+      <a href="#" class="btn btn-success" id="btn-status">All status</a>
       <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
       <ul class="dropdown-menu" id="btn-group-status">
         <li><a onclick="selectStatusClicked(this)">All status</a></li>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="btn-group">
-      <a href="#" class="btn btn-success">Select tag</a>
+      <a href="#" class="btn btn-success" id="btn-tag">All tags</a>
       <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
       <ul class="dropdown-menu" id="btn-group-tag">
         <li><a onclick="selectTagClicked(this)">All tags</a></li>
@@ -322,6 +322,7 @@
 
     function selectDateClicked(obj){
       date = obj.innerHTML;
+      document.getElementById('btn-date').innerHTML = date;
       if(date.match("All")){
         todoDisplayConfig[0] = 0;
         displayToDos(todoDisplayConfig);
@@ -333,7 +334,8 @@
     }
 
     function selectStatusClicked(obj){
-      status = obj.innerHTML;      
+      status = obj.innerHTML;
+      document.getElementById('btn-status').innerHTML = status;
       if(status.match("All")){
         todoDisplayConfig[1] = 0;
         displayToDos(todoDisplayConfig);
@@ -346,6 +348,7 @@
 
     function selectTagClicked(obj){
       tag = obj.innerHTML;
+      document.getElementById('btn-tag').innerHTML = tag;
       if(tag.match("All")){
         todoDisplayConfig[2] = 0;
         displayToDos(todoDisplayConfig);
