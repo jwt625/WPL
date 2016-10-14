@@ -1,7 +1,7 @@
 # WPL
 WTJ's personal log template
 
-This is my personal log template in HTML.
+This is my personal log template using HTML.
 
 ## Dependencies
 
@@ -23,7 +23,7 @@ Javascript is used to respond to selection of date, status and tag for todos.
 Simply clone the repo and edit the content where you recognize the markdown syntax.
 
 For TODOs, I use a `todos` object to enable selections.
-Currently you have to call addTodo method to in the last `<script>` environment to add new todo. See comments in template.html for detail.
+Currently you have to call addTodo method to in the last `<script>` environment to add new todo. See comments in `Autumn_2016/template.html` for detail.
 
 ## TODO
 - [ ] enable multiple tags for one todo.
