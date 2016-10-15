@@ -16,15 +16,19 @@ The above dependencies are already included in the project files and all the fun
 In addition, [MathJax](http://www.mathjax.org/) is included for rendering Tex/LaTeX, 
 which you have to download and put into `src`, and pointing the path to your `MathJax.js` in the html.
 
-Javascript is used to respond to selection of date, status and tag for todos.
+Javascript is used to respond to selection of date, status and tag for TODOs.
 
 ## Usage (if any...)
 
 Simply clone the repo and edit the content where you recognize the markdown syntax.
 
 For TODOs, I use a `todos` object to enable selections.
-Currently you have to call addTodo method to in the last `<script>` environment to add new todo. See comments in `Autumn_2016/template.html` for detail.
+
+TODOs can be saved as a variable in `todos.js` or as a JSON file. However it's hard to load JSON file locally, hence I use the `todos.js` to save TODOs. To load from JSON, you have to use, for example, `chrome --allow-file-access-from-files` to enable local file access for chrome.
+
+You can directly add or edit TODOs in the `.js` file.
 
 ## TODO
+- [x] automatically generate selection buttons
+- [x] read todo from file
 - [ ] enable multiple tags for one todo.
-- [ ] automatically generate selection buttons
