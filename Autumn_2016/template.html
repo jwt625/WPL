@@ -1,367 +1,300 @@
 <!DOCTYPE html>
 <html>
-<title>Log</title>
+<title>week-5</title>
+
 <head>
-  <link rel="stylesheet" href="../src/themes/darkly.min.css">
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-  });
-</script>
-<!-- <script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script> -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <link rel="stylesheet" href="../src/themes/darkly.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
+    </script>
+    <!-- <script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script> -->    
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 </head>
-
 <xmp id="source" style="display:none;">
-  # Week 5
-  [Return to Autumn 2016](../index.html)
-
-<!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
-
+    # Week-5 
+    [Return to Autumn 2016](../index.html)
+    <!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
 </xmp>
+
 <body>
-  
-<a href="https://github.com/jwt625/WPL"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-<div class="container">
-  <div id="target">  
-  </div>
-
-  <a href="#" class="btn btn-default btn-lg btn-block" id="clock" style="font-size:50px"></a>
-
-  	<div class="btn-group">
-      <a href="#" class="btn btn-success" id="btn-date">All dates</a>
-      <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-      <ul class="dropdown-menu" id="btn-group-date">
-        <li><a onclick="selectDateClicked(this)">All dates</a></li>
-        <li class="divider"></li>
-        <li><a onclick="selectDateClicked(this)">2016-10-14</a></li>
-        <li><a onclick="selectDateClicked(this)">2016-10-13</a></li>
-        <li><a onclick="selectDateClicked(this)">2016-10-12</a></li>
-      </ul>
-    </div>
-
-    <div class="btn-group">
-      <a href="#" class="btn btn-success" id="btn-status">All status</a>
-      <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-      <ul class="dropdown-menu" id="btn-group-status">
-        <li><a onclick="selectStatusClicked(this)">All status</a></li>
-        <li class="divider"></li>
-        <li><a onclick="selectStatusClicked(this)">todo</a></li>
-        <li><a onclick="selectStatusClicked(this)">done</a></li>
-        <li><a onclick="selectStatusClicked(this)">undone</a></li>
-      </ul>
-    </div>
-
-    <div class="btn-group">
-      <a href="#" class="btn btn-success" id="btn-tag">All tags</a>
-      <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-      <ul class="dropdown-menu" id="btn-group-tag">
-        <li><a onclick="selectTagClicked(this)">All tags</a></li>
-        <li class="divider"></li>
-        <li><a onclick="selectTagClicked(this)">hw</a></li>
-        <li><a onclick="selectTagClicked(this)">research</a></li>
-      </ul>
-    </div>
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <div class="bs-component">
-              <div id="source-todo" style="display:none;">
-              </div>
-              <div id="target-todo"></div>
-            </div>
-          </div>
-
-
-          <div class="col-lg-4">
-            <div class="bs-component">
-              <div id="source-ddl" style="display:none;">
-                  ## Deadlines
-                  - [x] Something
-                      - [x] something else
-                      - something else else
-                  - [x] **Friday afternoon 13:30**: Discuss again
-                  ## Questions to think about
-  				        ### 2016-10-10
-  				        - You should find sonething to think about
-
-                  
-                  test an equation: $ e^{i \theta} = \cos \theta + i \sin \theta $. This equation is rendered online. You should install MathJax to let it work locally.
-                  <br>
-                  Another equation (a `<p></p>` environment might be required to prevent it from being blurred by showdown):
-                  <p>$$\int_{\partial \Omega} \omega = \int_{\Omega} d \omega$$</p>
-
-                  
-              </div>
-              <div id="target-ddl"></div>
-            </div>
-          </div>
-
-
-          <div class="col-lg-4">
-            <div class="bs-component">
-              <div id="source-readings" style="display:none;">
-                ## Readings
-                ### 2016-10-13
-                ### 2016-10-12
-                - Some paper
-                - This is funny, you read only one paper for a whole day, and it's even one you've read once before. SHAME!
-                ### 2016-10-11
-                NONE....
-                ### 2016-10-10
-                NONE! WHAT ARE YOU DOING??
-              </div>
-              <dir id="target-readings"></dir>
-            </div>
-          </div>
+    <a href="https://github.com/jwt625/WPL"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+    <div class="container">
+        <div id="target">
         </div>
+        <a class="btn btn-default btn-lg btn-block" id="clock" style="font-size:50px"></a>
+        <!-- <a class="btn btn-default">Add TODO</a> -->
+        <div class="btn-group">
+            <a class="btn btn-primary" id="btn-save">Save TODOs</a>
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu" id="btn-group-save">
+                <li><a onclick="saveClicked(this)">save as .json</a></li>
+                <li><a onclick="saveClicked(this)">save as .js</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-success" id="btn-date">All dates</a>
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu" id="btn-group-date">
+            </ul>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-success" id="btn-status">All status</a>
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu" id="btn-group-status">
+                <li><a onclick="selectStatusClicked(this)">All status</a></li>
+                <li class="divider"></li>
+                <li><a onclick="selectStatusClicked(this)">todo</a></li>
+                <li><a onclick="selectStatusClicked(this)">done</a></li>
+                <li><a onclick="selectStatusClicked(this)">undone</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-success" id="btn-tag">All tags</a>
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu" id="btn-group-tag">
+                <li><a onclick="selectTagClicked(this)">All tags</a></li>
+                <li class="divider"></li>
+                <li><a onclick="selectTagClicked(this)">hw</a></li>
+                <li><a onclick="selectTagClicked(this)">research</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="bs-component">
+                    <div id="source-todo" style="display:none;">
+                    </div>
+                    <div id="target-todo"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="bs-component">
+                    <div id="source-ddl" style="display:none;">
+                        ## Deadlines
+                        - [x] Something
+                            - [x] something else
+                            - something else else
+                        - [x] **Friday afternoon 13:30**: Discuss again
+                        ## Questions to think about
+                        ### 2016-10-10
+                        - You should find sonething to think about
 
-</div>
-  <!-- <blockquote id="target"></blockquote>
-	<p>
-		test
-	</p> -->
+                  
+                        test an equation: $ e^{i \theta} = \cos \theta + i \sin \theta $. This equation is rendered online. You should install MathJax to let it work locally.
+                        <br>
+                        Another equation (a `<p></p>` environment might be required to prevent it from being blurred by showdown):
+                        <p>$$\int_{\partial \Omega} \omega = \int_{\Omega} d \omega$$</p>
+                    </div>
+                    <div id="target-ddl"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="bs-component">
+                    <div id="source-readings" style="display:none;">
+                        ## Readings
+                        ### 2016-10-13
+                        ### 2016-10-12
+                        - Some paper
+                        - This is funny, you read only one paper for a whole day, and it's even one you've read once before. SHAME!
+                        ### 2016-10-11
+                        NONE....
+                        ### 2016-10-10
+                        NONE! WHAT ARE YOU DOING??
+                    </div>
+                    <dir id="target-readings"></dir>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
 <script src="../src/jquery-3.1.1.min.js"></script>
 <script src="../src/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../src/FileSaver.js-1.3.3/FileSaver.min.js"></script>
+<script src="../src/Blob.js"></script>
+<script src="todos.js"></script>
 <script src="../src/showdown.min.js"></script>
-<script>    
-  var text = document.getElementById('source').innerHTML;
-      target = document.getElementById('target');
-      converter = new showdown.Converter(
-      	{tasklists: 'true',
-      	smartIndentationFix: 'true',
-      	strikethrough: 'true'});
-      html = converter.makeHtml(text);
-      // console.log(html)
-    target.innerHTML = html;
+<script>
+text = document.getElementById('source').innerHTML;
+target = document.getElementById('target');
+converter = new showdown.Converter({
+    tasklists: 'true',
+    smartIndentationFix: 'true',
+    strikethrough: 'true'
+});
+html = converter.makeHtml(text);
+target.innerHTML = html;
 
+text = document.getElementById('source-ddl').innerHTML;
+html = converter.makeHtml(text);
+document.getElementById('target-ddl').innerHTML = html;
 
-    text = document.getElementById('source-todo').innerHTML;    
-    html = converter.makeHtml(text);    
-  document.getElementById('target-todo').innerHTML = html;
-
-
-    console.log(document.getElementById('source-ddl'))
-    text = document.getElementById('source-ddl').innerHTML;    
-    html = converter.makeHtml(text);    
-  document.getElementById('target-ddl').innerHTML = html;
-
-
-    console.log(document.getElementById('source-readings'))
-    text = document.getElementById('source-readings').innerHTML;    
-    html = converter.makeHtml(text);    
-  document.getElementById('target-readings').innerHTML = html;
-
+text = document.getElementById('source-readings').innerHTML;
+html = converter.makeHtml(text);
+document.getElementById('target-readings').innerHTML = html;
 
 //add clock
-    (function () 
-    {
-    var clockElement = document.getElementById( "clock" );
+(function() {
+    var clockElement = document.getElementById("clock");
 
-      function updateClock ( clock ) 
-      {
+    function updateClock(clock) {
         clock.innerHTML = new Date().toLocaleTimeString();
-      }
-
-      setInterval(function () {
-        updateClock( clockElement );
-      }, 1000);
-
-    }());
-
-
-    var todos = {
-      "addDate":function(date){
-        this[date] = {
-          "generateMD":function(selectStatus,selectTag){
-            mdString = "### " + date + "\n";
-            // console.log(mdString);
-            for(key in this){
-              // now this THIS is a date object, KEY is todo object
-              // console.log(key);
-              // console.log(typeof(this[key]));
-              try {
-                mdString = mdString + this[key].generateMD(selectStatus,selectTag) + "\n" ;
-              }catch (e){}
-            }
-            return mdString;
-          }
-        };
-      },
-      "addTodo":function(date,todoName,todoContent,status,tag){
-        // todo should be an object with content, status and tag
-        // status: can be "todo", "done" or "undone"
-        if(!tag){
-          tag = "default";
-        }
-        // console.log(status);
-        if(!status){
-          status = "todo";
-        }
-        try{
-          this[date][todoName] = {
-            "content":todoContent,
-            "status":status,
-            "tag":tag,
-            "done":function(){this.status = "done";},
-            "undone":function(){this.status = "undone";},
-            "generateMD":function(selectStatus,selectTag){
-              if(this.status === "done"){
-                prefix = "- [x] ";
-                suffix = "";
-              }
-              else if (this.status === "undone"){
-                prefix = "- [ ] ~~";
-                suffix = "~~";
-              }else{
-                prefix = "- [ ]";
-                suffix = "";
-              }
-              if(!selectStatus){
-                if(!selectTag){
-                  return prefix + this.content + suffix;
-                }
-                if(this.tag === selectTag){
-                  return prefix + this.content + suffix;
-                }
-                else{
-                  return "";
-                }
-              }
-              if(this.status === selectStatus){
-                if(!selectTag){
-                  return prefix + this.content + suffix;
-                }
-                if(this.tag === selectTag){
-                  return prefix + this.content + suffix;
-                }
-                else{
-                  return "";
-                }
-              }
-              else{
-                return "";
-              }
-            }
-          };
-        }catch(e){
-          this.addDate(date);
-          this.addTodo(date,todoName,todoContent,status,tag);
-        };
-        },
-      "generateMD":function(selectDate,selectStatus,selectTag){
-        if(!selectDate){
-          mdString = "## TODO" + "\n";
-          for(key in this){
-            try{
-              mdString = mdString + this[key].generateMD(selectStatus,selectTag) + "\n" ;
-            }catch(e){}
-          }
-        } else{
-          mdString = "## TODO" + "\n";
-          for(key in this){
-            try{
-              if(key == selectDate){
-                mdString = mdString + this[key].generateMD(selectStatus,selectTag) + "\n" ;
-              }              
-            }catch(e){}
-          }          
-        }
-        return mdString
-      }
     }
 
-    /////////////////////////////////////////////////////////////////////
-    // 
-    // Example usage of addTodo:
-    // todos.addTodo("date", "acronym of your todo, not important", "content","status" ,"tag");
-    // content: content of your todo. You can use markdown here (and also inline TeX).
-    // status should be one of the follows: "todo", "done", "undone"
-    // tags currently available are: "hw" and "research". You can use your own tag and edit the options in the above HTML.
+    setInterval(function() {
+        updateClock(clockElement);
+    }, 1000);
 
-    todos.addTodo("2016-10-14", "CPW", "Try simulation on CPW near-field","todo" ,"research");
-    todos.addTodo("2016-10-14", "NV", "Continue reading SCQ-NV thesis","todo" ,"research");
-    todos.addTodo("2016-10-14", "DS", "Start [DS HW](https://www.google.com/)","todo" ,"hw");
-    todos.addTodo("2016-10-14", "GR", "Continue [GR HW1](https://www.google.com/)","todo" ,"hw");
+}());
 
-    todos.addTodo("2016-10-13", "tlgPP2", "Process homo pot data & update to [project](https://www.google.com/)","done" ,"research");
-    todos.addTodo("2016-10-13", "tlgPP", "Update theory paper\n\t- connect\n\t- conclusion\n\t- discuss valley","done" ,"research");
-    todos.addTodo("2016-10-13", "CPW", "Try simulation on CPW near-field","undone" ,"research");
-    todos.addTodo("2016-10-13", "NV", "Read SCQ-NV thesis","done" ,"research");
-    todos.addTodo("2016-10-13", "DS", "Start [DS HW](https://www.google.com/)","undone" ,"hw");
-    todos.addTodo("2016-10-13", "GR", "Continue [GR HW1](https://www.google.com/)","undone" ,"hw");
+//template: todos.addTodo("2016-10-10", "", "content","status" ,"tag");
 
-    todos.addTodo("2016-10-12", "ppSim", "Use optical drive instead of effective mechanical drive for p-p sim","done" ,"research");
-    todos.addTodo("2016-10-12", "tlgPP3", "Update bound-state-level section and add discussion (go to [project](https://www.google.com/)","done" ,"research");
-    todos.addTodo("2016-10-12", "tlgPP2", "Modify the structure of theory paper","done" ,"research");
-    todos.addTodo("2016-10-12", "tlgPP", "Exam the value of $\\mu$ (not necessary!)","done" ,"research");
-    todos.addTodo("2016-10-12", "CPW", "Try simulation on CPW near-field","undone" ,"research");
-    todos.addTodo("2016-10-12", "NV", "Read SCQ-NV thesis","undone" ,"research");
-    todos.addTodo("2016-10-12", "DS", "Start [DS HW](https://www.google.com/)","undone" ,"hw");
-    todos.addTodo("2016-10-12", "GR", "Continue [GR HW1](https://www.google.com/)","undone" ,"hw");
 
-                
-    // todos["2016-10-14"].DSHW.undone();
-    // console.log(todos.generateMD("2016-10-13",1));   
-    var todoDisplayConfig = [0, 0, 0];
+// This command will load json file.
+// Due to protocols, you have to modify safety settings of your browser to let it work locally.
+//
+// $.getJSON("todos.json", function(json) {
+//     console.log(json); // this will show the info it in firebug console
+// });
 
-    displayToDos(todoDisplayConfig);
+var week = document.title;
 
-    function displayToDos(config){
-      html = converter.makeHtml(todos.generateMD(config[0],config[1],config[2]));    
-      document.getElementById('target-todo').innerHTML = html;      
+var todoDisplayConfig = [0, 0, 0];
+
+displayToDos(todoDisplayConfig);
+
+generateSelectDateButtGroup();
+
+function generateSelectDateButtGroup(){
+    html = [];
+    html[0] = "<li><a onclick=\"selectDateClicked(this)\">All dates</a></li>\n";
+    html[1] = "<li class=\"divider\"></li>\n";
+    for (date in todosLoaded[week]){
+        len = html.length;
+        html[len] = "<li><a onclick=\"selectDateClicked(this)\">" + date + "</a></li>\n";
     }
+    document.getElementById("btn-group-date").innerHTML = html.join("");
+};
 
+function generateMD_Item(item, selectStatus, selectTag) {
+    if (item.status === "done") {
+        prefix = "- [x] ";
+        suffix = "";
+    } else if (item.status === "undone") {
+        prefix = "- [ ] ~~";
+        suffix = "~~";
+    } else {
+        prefix = "- [ ]";
+        suffix = "";
+    }
+    if (!selectStatus) {
+        if (!selectTag) {
+            return prefix + item.content + suffix;
+        }
+        if (item.tag === selectTag) {
+            return prefix + item.content + suffix;
+        } else {
+            return "";
+        }
+    }
+    if (item.status === selectStatus) {
+        if (!selectTag) {
+            return prefix + item.content + suffix;
+        }
+        if (item.tag === selectTag) {
+            return prefix + item.content + suffix;
+        } else {
+            return "";
+        }
+    } else {
+        return "";
+    }
+};
 
-    function selectDateClicked(obj){
-      date = obj.innerHTML;
-      document.getElementById('btn-date').innerHTML = date;
-      if(date.match("All")){
+function generateMD_Date(selectedDate, dateName, selectStatus, selectTag) {
+    mdString = "### " + dateName + "\n";
+    for (item in selectedDate) {
+        // now this selectedDate is a date object, item is todo object
+        try {
+            mdString = mdString + generateMD_Item(selectedDate[item], selectStatus, selectTag) + "\n";
+        } catch (e) {}
+    }
+    return mdString;
+};
+
+function generateMD_Week(selectedWeek, selectDate, selectStatus, selectTag) {
+    if (!selectDate) {
+        mdString = "## TODO" + "\n";
+        for (date in selectedWeek) {
+            try {
+                mdString = mdString + generateMD_Date(selectedWeek[date], date, selectStatus, selectTag) + "\n";
+            } catch (e) {}
+        }
+    } else {
+        mdString = "## TODO" + "\n";
+        for (date in selectedWeek) {
+            try {
+                if (date == selectDate) {
+                    mdString = mdString + generateMD_Date(selectedWeek[date], date, selectStatus, selectTag) + "\n";
+                }
+            } catch (e) {}
+        }
+    }
+    return mdString
+};
+
+function displayToDos(config) {
+    html = converter.makeHtml(generateMD_Week(todosLoaded[week], config[0], config[1], config[2]));
+    document.getElementById('target-todo').innerHTML = html;
+};
+
+function selectDateClicked(obj) {
+    date = obj.innerHTML;
+    document.getElementById('btn-date').innerHTML = date;
+    if (date.match("All")) {
         todoDisplayConfig[0] = 0;
         displayToDos(todoDisplayConfig);
-      }
-      else{
+    } else {
         todoDisplayConfig[0] = date;
         displayToDos(todoDisplayConfig);
-      }
     }
+};
 
-    function selectStatusClicked(obj){
-      status = obj.innerHTML;
-      document.getElementById('btn-status').innerHTML = status;
-      if(status.match("All")){
+function selectStatusClicked(obj) {
+    status = obj.innerHTML;
+    document.getElementById('btn-status').innerHTML = status;
+    if (status.match("All")) {
         todoDisplayConfig[1] = 0;
         displayToDos(todoDisplayConfig);
-      }
-      else {
+    } else {
         todoDisplayConfig[1] = status;
         displayToDos(todoDisplayConfig);
-      }
     }
+};
 
-    function selectTagClicked(obj){
-      tag = obj.innerHTML;
-      document.getElementById('btn-tag').innerHTML = tag;
-      if(tag.match("All")){
+function selectTagClicked(obj) {
+    tag = obj.innerHTML;
+    document.getElementById('btn-tag').innerHTML = tag;
+    if (tag.match("All")) {
         todoDisplayConfig[2] = 0;
         displayToDos(todoDisplayConfig);
-      }
-      else{
+    } else {
         todoDisplayConfig[2] = tag;
         displayToDos(todoDisplayConfig);
-      }
     }
+};
 
+function saveClicked(obj){
+    saveOption = obj.innerHTML;
+    if(saveOption.match("json")){
+        blob = new Blob([JSON.stringify(todosLoaded)], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "todos.json");
+    }else{
+        blob = new Blob(["var todosLoaded = ",JSON.stringify(todosLoaded), ";"], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "todos.js");
+    }
+};
 
 </script>
 </html>
