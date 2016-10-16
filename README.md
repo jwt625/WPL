@@ -1,9 +1,10 @@
 # WPL
 WTJ's personal log template
 
-This is my personal log template using HTML.
-TODOs are written in JSON which is relatively easy to edit, and it's saved in `todos.json`.
-You can put other stuff in two other columns in the pages, which is included in two `week-<week number>-columns-<2 or 3>.md` files.
+This is my personal log template using HTML. TODOs are written in JSON which is relatively easy to edit, and it's saved in `todos.json`. You can put other stuff in two other columns in the pages, which is included in two `week-<week number>-columns-<2 or 3>.md` files.
+
+## Screenshot
+![example](https://raw.githubusercontent.com/jwt625/WPL/master/fig/example.png)
 
 ## Usage (if any...)
 
@@ -36,7 +37,7 @@ which you have to download and put into `src`, and pointing the path to your `Ma
 
 ## TODO
 - [x] automatically generate selection buttons
-- [x] read todo from file
+- [x] read TODOs from file
 - [x] read markdown from file
 - [x] add load and refresh
 - [ ] enable multiple tags for one todo.
