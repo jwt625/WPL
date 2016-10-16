@@ -110,7 +110,8 @@ target = document.getElementById('target-title');
 var converter = new showdown.Converter({
     tasklists: 'true',
     smartIndentationFix: 'true',
-    strikethrough: 'true'
+    strikethrough: 'true',
+    parseImgDimension: 'true'
 });
 html = converter.makeHtml(text);
 target.innerHTML = html;

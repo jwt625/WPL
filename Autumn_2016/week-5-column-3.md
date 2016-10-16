@@ -7,3 +7,6 @@
 NONE....
 ### 2016-10-10
 NONE! WHAT ARE YOU DOING??
+
+Here is an image:
+![image](../fig/example.png =300x150 "This is a caption.")
