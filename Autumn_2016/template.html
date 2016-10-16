@@ -13,19 +13,29 @@
     <!-- <script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script> -->    
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 </head>
-<xmp id="source" style="display:none;">
-    # Week-5 
-    [Return to Autumn 2016](../index.html)
+<div id="source-title" style="display:none;">
+    # Week 5 
+    [Return to Autumn 2016](Autumn_2016.html)
     <!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
-</xmp>
+</div>
 
 <body>
-    <a href="https://github.com/jwt625/WPL"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
     <div class="container">
-        <div id="target">
+        <!-- title -->
+        <div id="target-title">
         </div>
         <a class="btn btn-default btn-lg btn-block" id="clock" style="font-size:50px"></a>
-        <!-- <a class="btn btn-default">Add TODO</a> -->
+        <!-- reload button group -->
+        <div class="btn-group">
+            <a class="btn btn-default" id="btn-reload" onclick="loadAll()">Reload</a>
+            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu" id="btn-group-save">
+                <li><a onclick="loadJSON(loadJSONCallBack)">Reload TODOs</a></li>
+                <li><a onclick="loadMDButtCallBack(this)" id="column-2">Reload column 2</a></li>
+                <li><a onclick="loadMDButtCallBack(this)" id="column-3">Reload column 3</a></li>
+            </ul>
+        </div>
+        <!-- save TODOs button group -->
         <div class="btn-group">
             <a class="btn btn-primary" id="btn-save">Save TODOs</a>
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
@@ -40,6 +50,7 @@
             <ul class="dropdown-menu" id="btn-group-date">
             </ul>
         </div>
+        <!-- select status button group -->
         <div class="btn-group">
             <a class="btn btn-success" id="btn-status">All status</a>
             <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
@@ -51,6 +62,7 @@
                 <li><a onclick="selectStatusClicked(this)">undone</a></li>
             </ul>
         </div>
+        <!-- select tags button group -->
         <div class="btn-group">
             <a class="btn btn-success" id="btn-tag">All tags</a>
             <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
@@ -61,49 +73,24 @@
                 <li><a onclick="selectTagClicked(this)">research</a></li>
             </ul>
         </div>
+        <a class="btn btn-default" onclick="refreshMathJax()">Refresh MathJax</a>
         <div class="row">
+            <!-- TODOs column -->
             <div class="col-lg-4">
                 <div class="bs-component">
-                    <div id="source-todo" style="display:none;">
-                    </div>
                     <div id="target-todo"></div>
                 </div>
             </div>
+            <!-- second column -->
             <div class="col-lg-4">
                 <div class="bs-component">
-                    <div id="source-ddl" style="display:none;">
-                        ## Deadlines
-                        - [x] Something
-                            - [x] something else
-                            - something else else
-                        - [x] **Friday afternoon 13:30**: Discuss again
-                        ## Questions to think about
-                        ### 2016-10-10
-                        - You should find sonething to think about
-
-                  
-                        test an equation: $ e^{i \theta} = \cos \theta + i \sin \theta $. This equation is rendered online. You should install MathJax to let it work locally.
-                        <br>
-                        Another equation (a `<p></p>` environment might be required to prevent it from being blurred by showdown):
-                        <p>$$\int_{\partial \Omega} \omega = \int_{\Omega} d \omega$$</p>
-                    </div>
-                    <div id="target-ddl"></div>
+                    <div id="target-column-2"></div>
                 </div>
             </div>
+            <!-- third column -->
             <div class="col-lg-4">
                 <div class="bs-component">
-                    <div id="source-readings" style="display:none;">
-                        ## Readings
-                        ### 2016-10-13
-                        ### 2016-10-12
-                        - Some paper
-                        - This is funny, you read only one paper for a whole day, and it's even one you've read once before. SHAME!
-                        ### 2016-10-11
-                        NONE....
-                        ### 2016-10-10
-                        NONE! WHAT ARE YOU DOING??
-                    </div>
-                    <dir id="target-readings"></dir>
+                    <dir id="target-column-3"></dir>
                 </div>
             </div>
         </div>
@@ -113,26 +100,18 @@
 <script src="../src/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../src/FileSaver.js-1.3.3/FileSaver.min.js"></script>
 <script src="../src/Blob.js"></script>
-<script src="todos.js"></script>
+<!-- <script src="todos.js"></script> -->
 <script src="../src/showdown.min.js"></script>
 <script>
-text = document.getElementById('source').innerHTML;
-target = document.getElementById('target');
-converter = new showdown.Converter({
+text = document.getElementById('source-title').innerHTML;
+target = document.getElementById('target-title');
+var converter = new showdown.Converter({
     tasklists: 'true',
     smartIndentationFix: 'true',
     strikethrough: 'true'
 });
 html = converter.makeHtml(text);
 target.innerHTML = html;
-
-text = document.getElementById('source-ddl').innerHTML;
-html = converter.makeHtml(text);
-document.getElementById('target-ddl').innerHTML = html;
-
-text = document.getElementById('source-readings').innerHTML;
-html = converter.makeHtml(text);
-document.getElementById('target-readings').innerHTML = html;
 
 //add clock
 (function() {
@@ -148,25 +127,55 @@ document.getElementById('target-readings').innerHTML = html;
 
 }());
 
-//template: todos.addTodo("2016-10-10", "", "content","status" ,"tag");
-
-
-// This command will load json file.
-// Due to protocols, you have to modify safety settings of your browser to let it work locally.
-//
-// $.getJSON("todos.json", function(json) {
-//     console.log(json); // this will show the info it in firebug console
-// });
-
-var week = document.title;
-
 var todoDisplayConfig = [0, 0, 0];
 
-displayToDos(todoDisplayConfig);
+loadAll();
 
-generateSelectDateButtGroup();
+
+function loadAll(){
+    loadJSON(loadJSONCallBack)
+    loadMD('week-5-column-2.md', 'target-column-2');
+    loadMD('week-5-column-3.md', 'target-column-3');
+}
+
+function refreshMathJax(){
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+};
+
+function loadJSON(callback) {
+  $.getJSON('todos.json', function (data) {
+    callback(data);
+  });
+};
+
+function loadMD(sourcefile, targetid){
+    jQuery.get(sourcefile, function(data) {
+    html = converter.makeHtml(data);
+    document.getElementById(targetid).innerHTML = html;
+});};
+
+function loadJSONCallBack(data) {
+    // var todosLoaded = data;
+    // console.log(todosLoaded);    
+    // var week = document.title;
+    document.todos = data;
+    // console.log(document.todos);
+    displayToDos(todoDisplayConfig);
+    generateSelectDateButtGroup();
+};
+
+function loadMDButtCallBack(obj){
+    console.log(obj.id)
+    sourcefile = document.title + "-" + obj.id + ".md";
+    targetid = "target-" + obj.id;
+    loadMD(sourcefile, targetid);
+};
+// displayToDos(todoDisplayConfig);
+
+// generateSelectDateButtGroup();
 
 function generateSelectDateButtGroup(){
+    week = document.title;
     html = [];
     html[0] = "<li><a onclick=\"selectDateClicked(this)\">All dates</a></li>\n";
     html[1] = "<li class=\"divider\"></li>\n";
@@ -245,6 +254,8 @@ function generateMD_Week(selectedWeek, selectDate, selectStatus, selectTag) {
 };
 
 function displayToDos(config) {
+    todosLoaded = document.todos;
+    week = document.title;
     html = converter.makeHtml(generateMD_Week(todosLoaded[week], config[0], config[1], config[2]));
     document.getElementById('target-todo').innerHTML = html;
 };

@@ -1,4 +1,4 @@
-var todosLoaded = {
+{
     "week-5": {
         "2016-10-14": {
             "CPW": {
@@ -46,12 +46,12 @@ var todosLoaded = {
         },
         "2016-10-12": {
             "ppSim": {
-                "content": "Use optical drive instead of effective mechanical drive for p-p sim",
+                "content": "Use A instead of B",
                 "status": "done",
                 "tag": "research"
             },
             "tlgPP3": {
-                "content": "Update bound-state-level section and add discussion (go to [project](https://www.google.com/)",
+                "content": "Update XXX section and add discussion (go to [project](https://www.google.com/)",
                 "status": "done",
                 "tag": "research"
             },
@@ -87,4 +87,4 @@ var todosLoaded = {
             }
         }
     }
-};
+}
