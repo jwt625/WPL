@@ -43,4 +43,5 @@ which you have to download and put into `src`, and pointing the path to your `Ma
 - [ ] enable multiple tags for one todo.
 
 ## Acknowledgement
-- 
+- Thank [Chris](https://github.com/CSarabalis) for introducing logging using markdown-to-html to me :)
+- [Sublime-HTMLPrettify](https://github.com/victorporof/Sublime-HTMLPrettify) is used for formatting codes.
