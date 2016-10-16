@@ -1,7 +1,7 @@
 function loadAll(){
-	loadJSON(loadJSONCallBack)
-	loadMD('week-5-column-2.md', 'target-column-2');
-	loadMD('week-5-column-3.md', 'target-column-3');
+    loadJSON(loadJSONCallBack)
+    loadMD(document.title + "-column-2.md", 'target-column-2');
+    loadMD(document.title + "-column-3.md", 'target-column-3');
 }
 
 function refreshMathJax(){
