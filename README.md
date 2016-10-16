@@ -3,7 +3,7 @@ WTJ's personal log template
 
 This is my personal log template using HTML.
 TODOs are written in JSON which is relatively easy to edit, and it's saved in `todos.json`.
-You can put other stuff in two other columns in the pages, which is included in two `week-i-columns-j.md` files.
+You can put other stuff in two other columns in the pages, which is included in two `week-<week number>-columns-<2 or 3>.md` files.
 
 ## Usage (if any...)
 
@@ -23,14 +23,14 @@ You can directly add or edit TODOs in the `.js` or `.json` file.
 - [jQuery](https://jquery.com/) is required by Bootstrap.
 - [FileSaver.js](https://github.com/eligrey/FileSaver.js) is used for saving TODOs to .js or .json file. [Blob.js](https://github.com/eligrey/Blob.js) might be required for some browser.
 
-The above dependencies are already included in the project files and all the functionalities can work offline. You can find them in `/src/`.
+The above dependencies are already included in the project files and all the functionalities can work offline. You can find them in `/src/` and do not need to worry about.
 
 In addition, [MathJax](http://www.mathjax.org/) is included for rendering Tex/LaTeX, 
 which you have to download and put into `src`, and pointing the path to your `MathJax.js` in the html if you want to use it offline.
 
 ## Possible issue
 
-- It's hard to load JSON file locally due to security, hence I use the `todos.js` to save TODOs. To load from JSON, you have to use, for example, start chrome with option `--allow-file-access-from-files` (`chrome --allow-file-access-from-files`) to enable local file access for chrome.
+- It's hard to load JSON file locally due to security, hence you can use the `todos.js` to save TODOs and directly load the js instead. To load from JSON, you have to use, for example, start chrome with option `--allow-file-access-from-files` (`chrome --allow-file-access-from-files`) to enable local file access for browsers.
 - The .js or .json file downloaded is not in a good format. You can use a json parser, e.g., [json parser online](http://json.parser.online.fr/) to make it more readable.
 
 
