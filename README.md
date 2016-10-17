@@ -1,7 +1,7 @@
 # WPL
 WTJ's personal log template
 
-This is my personal log template using HTML. Contents are mainly written in Markdown and are converted to HTML. TODOs are formatted JSON which is relatively easy to edit, and it's saved in `todos.json`. Markdown and TeX can also be used in the `content` property for TODOs.
+This is my personal log template using HTML and javascript. Contents are mainly written in Markdown and are converted to HTML. TeX is also supported by MathJax. TODOs are formatted in JSON which is very easy to edit, and it's saved in `todos.json`. **Markdown and TeX** can also be used in the `content` property for TODOs.
 
 The HTML pages mainly includes three columns, the first one for TODOs. You can put whatever you want in two other columns in the pages, which is included in two `week-<week number>-columns-<2 or 3>.md` files. You can select TODOs by date, status and tags.
 
@@ -44,18 +44,19 @@ You can still use it without changing anything if you have Internet connection.
 
 ## Possible issue
 
-- It's forbidden to read local files in browser due to security, hence for TODOs you can alternatively use the `todos.js` to save TODOs and load the `.js` file instead. To load from local `.json` and `.md` files, you have to, for example, start chrome with option `--allow-file-access-from-files`, e.g., in cmd on Windows:
+- It's forbidden to read local files in browser due to security. **This is highly possible the case** if you open the html in your browser but no TODO appears. Hence for TODOs you can alternatively use the `todos.js` to save TODOs as a global variable and load the `.js` file instead (which is a dirty way). To load from local `.json` and `.md` files, you have to, for example, start chrome with option `--allow-file-access-from-files`, e.g., in cmd on Windows:
 ```
 start chrome full-path-to-the-index\index.html --allow-file-access-from-files
 ```
-to enable local file access for chrome. **This is highly possible the case** if you open the html in your browser but no TODO appears.
-- The .js or .json file downloaded is within one line. You can use a json parser, e.g., [JSON Parser Online](http://json.parser.online.fr/) or [JSON Editor Online](http://www.jsoneditoronline.org/) to make it more readable.
+to enable local file access for chrome.
+- The .js or .json file generated which you can download is within one line. You can use a json parser, e.g., [JSON Parser Online](http://json.parser.online.fr/) to make it more readable. [JSON Editor Online](http://www.jsoneditoronline.org/) is also recommended for formatting and editting json (if you don't like to edit json in a text editor).
 - You have to dowload and set up MathJax to use it without Internet connection, see [Dependencies](#dependencies).
+- Be aware about the Markdown's XSS vulnerability. See, e.g., [Markdown's XSS Vulnerability (and how to mitigate it)](https://github.com/showdownjs/showdown/wiki/Markdown's-XSS-Vulnerability-(and-how-to-mitigate-it)).
 
 
 ## TODO
 - [x] automatically generate date selection buttons
-- [ ] automatically generate tag selection buttons
+- [x] automatically generate tag selection buttons
 - [x] read TODOs from file
 - [x] read markdown from file
 - [x] add load and refresh
