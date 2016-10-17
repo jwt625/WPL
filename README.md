@@ -44,8 +44,13 @@ You can still use it without changing anything if you have Internet connection.
 
 ## Possible issue
 
-- It's hard to load JSON file locally due to security, hence you can use the `todos.js` to save TODOs and directly load the `.js` file instead. To load from JSON, you have to, for example, start chrome with option `--allow-file-access-from-files` (`chrome --allow-file-access-from-files`) to enable local file access for chrome.
-- The .js or .json file downloaded is within one line. You can use a json parser, e.g., [json parser online](http://json.parser.online.fr/) to make it more readable.
+- It's forbidden to read local files in browser due to security, hence for TODOs you can alternatively use the `todos.js` to save TODOs and load the `.js` file instead. To load from local `.json` and `.md` files, you have to, for example, start chrome with option `--allow-file-access-from-files`, e.g., in cmd on Windows:
+```
+start chrome full-path-to-the-index\index.html --allow-file-access-from-files
+```
+to enable local file access for chrome. **This is highly possible the case** if you open the html in your browser but no TODO appears.
+- The .js or .json file downloaded is within one line. You can use a json parser, e.g., [JSON Parser Online](http://json.parser.online.fr/) or [JSON Editor Online](http://www.jsoneditoronline.org/) to make it more readable.
+- You have to dowload and set up MathJax to use it without Internet connection, see [Dependencies](#dependencies).
 
 
 ## TODO
