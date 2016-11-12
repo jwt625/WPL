@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<!-- You have to modify TITLE here -->
+<title>template</title>
+<head>
+    <!-- This is for the theme -->
+    <link rel="stylesheet" href="ftp://166.111.141.159/S308/website/src/themes/darkly.min.css">
+    <!-- Below settings are all related to MathJax -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
+    </script>
+    <script type="text/javascript" src="ftp://166.111.141.159/S308/website/src/MathJax-2.6-latest/MathJax.js"></script>
+</head>
+
+<div id="source-title" style="display:none;">
+    [Return to index](ftp://166.111.141.159/S308/website/index.html)
+    <!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
+</div>
+
+<body>
+    <div class="container">
+    	<!-- title -->
+        <div id="target-title">
+        </div>
+        
+        <a class="btn btn-default" onclick="reload()">Reload</a>
+        <a class="btn btn-default" onclick="refreshMathJax()">Refresh MathJax</a>
+
+        <!-- 
+        Here you can modify the layout of the HTML page.
+        For example, in this HTML it's a row with two column, 
+        and they are all set by the 'class' option.
+        You can change the number of the 'class' option, 
+        e.g., from "col-lg-12" to "col-lg-6" or whatever, to change the width of that column.
+        The inner <div> environment is for hosting the HTML content converted from MD files, and the id of this <div> environment is passed to the function which converts the MD file and set the converted HTML as inner HTML of this environment.
+         -->
+        <div class="row">
+
+
+            <div class="col-lg-12">
+                <div class="bs-component">
+                    <dir id="target-column"></dir>
+                </div>
+            </div>
+
+            <!-- 
+            You can add more columns if you want, like this:
+
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <dir id="target-2"></dir>
+                </div>
+            </div>
+            
+            and use another .md file to edit the content and load it by 
+            calling function loadMD (see below for detail).
+            -->
+
+
+
+        </div>
+        <!-- You can add more rows below -->
+
+
+    </div>
+</body>
+<!-- Load realated scripts for MD to HTML conversion, Theme, etc. -->
+<script src="ftp://166.111.141.159/S308/website/src/jquery-3.1.1.min.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/FileSaver.js-1.3.3/FileSaver.min.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/Blob.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/showdown.min.js"></script>
+<!-- including callback functions -->
+<script src="ftp://166.111.141.159/S308/website/src/callbackfuncs.js"></script>
+<script>
+
+// Here, converter is created as a global variable
+// MD in the <div> environment (with id 'source-title') before the <body> environment are
+// then converted and displayed in the <div> environment with id 'target-title', which is inside the <div> with class="container".
+text = document.getElementById('source-title').innerHTML;
+target = document.getElementById('target-title');
+var converter = new showdown.Converter({
+    tasklists: true,
+    smartIndentationFix: true,
+    strikethrough: true,
+    parseImgDimensions: true,
+    tables: true,
+    literalMidWordUnderscores: true
+});
+html = converter.makeHtml(text);
+target.innerHTML = html;
+
+
+// RELOAD is expected to work for the reload button,
+// for reloading contents from markdown files without
+// refreshing the whole page. But it's not working on
+// the ftp server. It's working if you open the page on
+// your own computer. 
+// See template.html page for allowing
+// local file access for Google Chrome.
+reload();
+
+function reload(){
+    // loadMD loads the .md file.
+    // It takes two parameters, the first one gives the directory of the .md files to load, the second parameter is the id of the element where the converted HTML will be added into.
+    // For example, here the file name is the 
+    // TITLE of this HTML, and the id of the element is "target-column".
+    loadMD(document.title+".md","target-column");
+    // You can find loadMD in the 'callbackfuncs.js' in the 'src' folder.
+    // Hence you can call this function to change the content of your page in your markdown file as a link, 
+    // e.g., [click here](javascript:loadMD('source.md','target-id'))
+    // See projects/SC qubit and NV/SCQ-NV.html for an example.
+}
+
+</script>
+</html>

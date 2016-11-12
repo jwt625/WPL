@@ -180,10 +180,10 @@ function selectTagClicked(obj) {
 function saveClicked(obj){
     saveOption = obj.innerHTML;
     if(saveOption.match("json")){
-        blob = new Blob([JSON.stringify(todosLoaded)], {type: "text/plain;charset=utf-8"});
+        blob = new Blob([JSON.stringify(todosLoaded,null,2)], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "todos.json");
     }else{
-        blob = new Blob(["var todosLoaded = ",JSON.stringify(todosLoaded), ";"], {type: "text/plain;charset=utf-8"});
+        blob = new Blob(["var todosLoaded = ",JSON.stringify(todosLoaded,null,2), ";"], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "todos.js");
     }
 };

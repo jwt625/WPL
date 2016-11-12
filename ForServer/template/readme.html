@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<!-- You have to modify TITLE here -->
+<title>readme</title>
+<head>
+    <link rel="stylesheet" href="ftp://166.111.141.159/S308/website/src/themes/darkly.min.css">
+    <!-- Below settings are all related to MathJax -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
+    </script>
+    <script type="text/javascript" src="ftp://166.111.141.159/S308/website/src/MathJax-2.6-latest/MathJax.js"></script>
+</head>
+<div id="source-title" style="display:none;">
+    [Return to index](ftp://166.111.141.159/S308/website/index.html)
+    <!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
+</div>
+
+<body>
+    <div class="container">
+    	<!-- title -->
+        <div id="target-title">
+        </div>
+        
+        <a class="btn btn-default" onclick="reload()">Reload</a>
+        <a class="btn btn-default" onclick="refreshMathJax()">Refresh MathJax</a>
+
+        <!-- 
+        Here you can modify the layout of the HTML page.
+        For example, in this HTML it's a row with two column, 
+        and they are all set by the 'class' option.
+        You can change the number of the 'class' option, 
+        e.g., from "col-lg-8" to "col-lg-6" or whatever, to change the width of that column.
+        The inner <div> environment is for hosting the HTML content converted from MD files
+        The <pre> and <xmp> environment inside the second column is only for displaying the MD file as it is, only for this template.html page.
+         -->
+        <div class="row">
+
+
+            <div class="col-lg-8">
+                <div class="bs-component">
+                    <dir id="target-column"></dir>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="bs-component">
+                    <h1>readme.md</h1>
+                    <pre>
+                        <xmp id="target-MD"></xmp>
+                    </pre>
+                </div>
+            </div>
+            <!-- You can add more columns if you want. -->
+
+
+
+        </div>
+        <!-- You can add more rows below -->
+
+
+    </div>
+</body>
+<!-- Load realated scripts for MD to HTML conversion, Theme, etc. -->
+<script src="ftp://166.111.141.159/S308/website/src/jquery-3.1.1.min.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/FileSaver.js-1.3.3/FileSaver.min.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/Blob.js"></script>
+<script src="ftp://166.111.141.159/S308/website/src/showdown.min.js"></script>
+<!-- including callback functions -->
+<script src="ftp://166.111.141.159/S308/website/src/callbackfuncs.js"></script>
+<script>
+text = document.getElementById('source-title').innerHTML;
+target = document.getElementById('target-title');
+var converter = new showdown.Converter({
+    tasklists: true,
+    smartIndentationFix: true,
+    strikethrough: true,
+    parseImgDimensions: true,
+    tables: true,
+    literalMidWordUnderscores: true
+});
+html = converter.makeHtml(text);
+target.innerHTML = html;
+
+
+// RELOAD is expected to work for the reload button,
+// for reloading contents from markdown files without
+// refreshing the whole page. But it's not working on
+// the ftp server. It's working if you open the page on
+// your own computer. 
+// See template.html page for allowing
+// local file access for Google Chrome.
+reload();
+
+function reload(){
+    // loadMDByTitle loads the .md file whose file name is the same 
+    // as TITLE of this HTML, and display the converted HTML content 
+    // into an element in this HTML, where the id of the element is given
+    // as a parameter. For example, here the id of the element 
+    // is "target-column".
+    loadMDByTitle("target-column");
+    // loadMDCode loads the template.md file and display as it is.  
+    loadMDCode(document.title + ".md","target-MD");
+    // These functions are all in the 'callbackfuncs.js' in the 'src' folder.
+}
+
+// This is for SAVE FILE dialog, currently not used.
+function saveBatchFile(){
+    blob = new Blob(["start chrome --allow-file-access-from-files"], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "open-chrome-with-file-access.bat");    
+}
+
+// This is for displaying .md files as it is,
+// only used in this template.html page
+function loadMDCode(sourcefile, targetid){
+    jQuery.get(sourcefile, function(data) {
+    document.getElementById(targetid).innerHTML = data;
+});};
+
+</script>
+</html>
