@@ -1,0 +1,64 @@
+{
+	"autumn2016": {
+		"DataStructure": {
+			"time": [
+				{
+					"date": 3,
+					"section": 6
+				},
+				{
+					"date": 5,
+					"section": 6
+				}
+			],
+			"location": "6A117",
+			"FolderPath": "../../../../../../THU/autumn_2016/DataStructure/",
+			"notes": "courses/DataStructure.md"
+		},
+		"GR": {
+			"time": [
+				{
+					"date": 1,
+					"section": 4
+				},
+				{
+					"date": 3,
+					"section": 4
+				}
+			],
+			"location": "6A101",
+			"FolderPath": "../../../../../../THU/autumn_2016/GR/",
+			"notes": "courses/GR.md"
+		},
+		"SolidStatePhy2": {
+			"time": [
+				{
+					"date": 1,
+					"section": 2
+				},
+				{
+					"date": 3,
+					"section": 1
+				}
+			],
+			"location": "6A103",
+			"FolderPath": "../../../../../../THU/autumn_2016/SolidStatePhy2/",
+			"notes": "courses/SolidStatePhy2.md"
+		},
+		"QFT": {
+			"time": [
+				{
+					"date": 4,
+					"section": 2
+				},
+				{
+					"date": 5,
+					"section": 4
+				}
+			],
+			"location": "6A401",
+			"FolderPath": "../../../../../../THU/autumn_2016/QFT/",
+			"notes": "courses/qft.md"
+		}
+	}
+}

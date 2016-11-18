@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>week-5</title>
-
+<title>TODO and Course Notes</title>
 <head>
     <link rel="stylesheet" href="../src/themes/darkly.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,20 +9,19 @@
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
     </script>
-    <!-- <script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script> -->    
+    <!-- <script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script> -->
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 </head>
 <div id="source-title" style="display:none;">
-    # Week 5 
-    [Return to index](../index.html)
-    <!--img src="figures/levels_potential1.png" alt="Drawing" style="width: 300px;"/-->
+    # TODO and Courses
+    <!-- [Return to Autumn 2016](Autumn_2016.html) -->
 </div>
 
 <body>
 
     <a href="https://github.com/jwt625/WPL"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
     <div class="container">
-        <!-- title -->
+    	<!-- title -->
         <div id="target-title">
         </div>
         <a class="btn btn-default btn-lg btn-block" id="clock" style="font-size:50px"></a>
@@ -32,9 +30,9 @@
             <a class="btn btn-default" id="btn-reload" onclick="loadAll()">Reload</a>
             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
             <ul class="dropdown-menu" id="btn-group-save">
-                <li><a onclick="loadJSON(loadJSONCallBack)">Reload TODOs</a></li>
-                <li><a onclick="loadMDButtCallBack(this)" id="column-2">Reload column 2</a></li>
-                <li><a onclick="loadMDButtCallBack(this)" id="column-3">Reload column 3</a></li>
+                <li><a onclick="loadJSON(loadTODOCallBack)">Reload TODOs</a></li>
+                <li><a onclick="loadMDButtCallBack(this)" id="c2-r2">Reload column 2</a></li>
+                <!-- <li><a onclick="loadMDButtCallBack(this)" id="column-3">Reload column 3</a></li> -->
             </ul>
         </div>
         <!-- save TODOs button group -->
@@ -73,24 +71,31 @@
         </div>
         <a class="btn btn-default" onclick="refreshMathJax()">Refresh MathJax</a>
         <div class="row">
-            <!-- TODOs column -->
+        	<!-- TODOs column -->
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div id="target-todo"></div>
                 </div>
             </div>
             <!-- second column -->
-            <div class="col-lg-4">
-                <div class="bs-component">
-                    <div id="target-column-2"></div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="bs-component">
+                        <div id="target-c2-r1"></div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="bs-component">
+                        <div id="target-c2-r2"></div>
+                    </div>                   
                 </div>
             </div>
             <!-- third column -->
-            <div class="col-lg-4">
+            <!-- <div class="col-lg-4">
                 <div class="bs-component">
                     <dir id="target-column-3"></dir>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
@@ -106,10 +111,12 @@
 text = document.getElementById('source-title').innerHTML;
 target = document.getElementById('target-title');
 var converter = new showdown.Converter({
-    tasklists: 'true',
-    smartIndentationFix: 'true',
-    strikethrough: 'true',
-    parseImgDimensions: 'true'
+    tasklists: true,
+    smartIndentationFix: true,
+    strikethrough: true,
+    parseImgDimensions: true,
+    tables: true,
+    literalMidWordUnderscores: true
 });
 html = converter.makeHtml(text);
 target.innerHTML = html;
