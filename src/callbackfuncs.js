@@ -44,16 +44,17 @@ function loadMD(sourcefile, targetid) {
 };
 
 // load multiple MD files to one target
-function loadMDs(sourcefiles, targetid, tmphtml) {
-	if (!tmphtml) {
-		var tmphtml = "";
+function loadMDs(sourcefiles, targetid, tmpdata) {
+	if (!tmpdata) {
+		var tmpdata = "";
 	}
 	jQuery.get(sourcefiles[0], function(data) {
-		tmphtml = tmphtml + converter.makeHtml(data) + "\n";
+		tmpdata = tmpdata + data + "\n";
 		if (sourcefiles.length > 1) {
-			loadMDs(sourcefiles.slice(1, sourcefiles.length), targetid, tmphtml);
+			loadMDs(sourcefiles.slice(1, sourcefiles.length), targetid, tmpdata);
 		} else {
-			document.getElementById(targetid).innerHTML = tmphtml;
+			var html = converter.makeHtml(tmpdata)
+			document.getElementById(targetid).innerHTML = html;
 			refreshMathJax();
 		}
 	});
@@ -133,6 +134,9 @@ function keydown(e) {
 		case "a":
 			selectStatusClicked({"innerHTML":"All status"});
 			break;
+		case "h":
+			hideTODO();
+			break;
 		default:
 			break;
 	}
@@ -175,6 +179,24 @@ function textinput(e) {
 // I use them for my personal log including
 // some functionality for TODOs
 // Wentao, 2016/11
+function hideTODO(obj) {
+	if (document.getElementById("target-todo").style.display == "") {
+		document.getElementById("target-todo").style.display = "none";
+		document.getElementById("left-col").className = "col-lg-1";
+		document.getElementById("right-col").className = "col-lg-11";
+		if (obj) {
+			obj.innerHTML = "Show TODO";
+		}
+	} else {
+		document.getElementById("left-col").className = "col-lg-4";
+		document.getElementById("target-todo").style.display = "";
+		document.getElementById("right-col").className = "col-lg-8";
+		if (obj) {
+			obj.innerHTML = "Hide TODO";
+		}
+	}
+}
+
 function loadTODOCallBack(data) {
 	document.todos = data;
 	displayToDos(todoDisplayConfig);
@@ -452,8 +474,7 @@ function loadCoursesCallBack(allCourses) {
 }
 
 function generateMD_CourseTable(courseTable) {
-	var mdString = "# Courses\n- [GR](#gr)\n- [Solid State Physics II](#solidstatephysicsii)\n- [Data Structure](#datastructure)\n- [Quantum Field Theory](#quantumfieldtheory)\n"
-	mdString = mdString + "|Time|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday| \n |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|\n";
+	var mdString = "## Time Table\n|Time|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday| \n |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|\n";
 	for (var i = 1; i < courseTable.length; i++) {
 		for (var j = 0; j < courseTable[i].length; j++) {
 			mdString = mdString + "|" + courseTable[i][j];
@@ -468,7 +489,7 @@ function generateMD_CourseTable(courseTable) {
 
 // These bullshit below are for loading course info from 
 // xml and are not used
-
+// 
 function generateMD_AllCourses(selectedSemester) {
 	var mdString = "";
 	selectedCourse = selectedSemester.firstElementChild;
