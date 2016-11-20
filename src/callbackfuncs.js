@@ -1,22 +1,8 @@
 initKeyboardRefreshMathJax();
-var html = "";
-var todosLoaded = {};
-var coursesInfo = {};
-// var tmpevent;
-
-// Not used
-function loadAll() {
-	loadJSON("todos.json", loadTODOCallBack);
-		// loadMD(document.title + "-column-2.md", 'target-column-2');
-		// loadMD(document.title + "-column-3.md", 'target-column-3');
-		// refreshMathJax();
-		// loadXML("courses.xml", "autumn2016", "target-c2-r2");
-	loadJSON("courses.json", loadCoursesCallBack);
-}
 
 // Refresh MathJax
 function refreshMathJax() {
-	console.log('RMJ called');
+	console.log('rMJ called');
 	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 };
 
@@ -60,6 +46,14 @@ function loadMDs(sourcefiles, targetid, tmpdata) {
 	});
 }
 
+function highLight() {
+	$(document).ready(function() {
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	});
+}
+
 function loadMDByTitle(targetid) {
 	var source = document.title + ".md";
 	loadMD(source, targetid);
@@ -70,9 +64,6 @@ function loadMDByTitle(targetid) {
 // Modified from http://unixpapa.com/js/testkey.html
 // Wentao, 2016/11/12
 function initKeyboardRefreshMathJax() {
-	// document.testform.t.value+= '';
-	lines = 0;
-
 	if (document.addEventListener) {
 		document.addEventListener("keydown", keydown, false);
 		document.addEventListener("keypress", keypress, false);
@@ -100,7 +91,7 @@ function suppressdefault(e, flag) {
 }
 
 function keydown(e) {
-	console.log('keydown called');
+	// console.log('keydown called');
 	if (!e) e = event;
 	// keymesg('keydown ',e);
 	
@@ -112,30 +103,43 @@ function keydown(e) {
 	// 	loadJSON("todos.json", loadTODOCallBack);
 	// }
 
+	// console.log(e.key)
+	
 	switch (e.key){
 		case "r":
 			loadAll();
 			break;
-		case "n":
-			loadJSON("courses.json", loadCoursesCallBack);
-		break;
-		case "t":
+		// reload col 1, i.e., TODO
+		case "1":
 			loadJSON("todos.json", loadTODOCallBack);
 			break;
+		// reload col 2
 		case "2":
+			loadJSON("courses.json", loadCoursesCallBack);
+		break;
+		// display TODO todo
+		case "t":
 			selectStatusClicked({"innerHTML":"todo"});
 			break;
+		// display TODO done
 		case "d":
 			selectStatusClicked({"innerHTML":"done"});
 			break;
+		// display TODO undone
 		case "u":
 			selectStatusClicked({"innerHTML":"undone"});
 			break;
+		// display TODO all
 		case "a":
 			selectStatusClicked({"innerHTML":"All status"});
 			break;
-		case "h":
+		// hide TODO
+		case "Shift":
 			hideTODO();
+			break;
+		// syntax highlight
+		case "h":
+			highLight();
 			break;
 		default:
 			break;
@@ -180,20 +184,19 @@ function textinput(e) {
 // some functionality for TODOs
 // Wentao, 2016/11
 function hideTODO(obj) {
+	if (!obj) {
+		obj = document.getElementById("btn-hideTODO");
+	}
 	if (document.getElementById("target-todo").style.display == "") {
 		document.getElementById("target-todo").style.display = "none";
 		document.getElementById("left-col").className = "col-lg-1";
 		document.getElementById("right-col").className = "col-lg-11";
-		if (obj) {
-			obj.innerHTML = "Show TODO";
-		}
+		obj.innerHTML = "Show TODO";
 	} else {
 		document.getElementById("left-col").className = "col-lg-4";
 		document.getElementById("target-todo").style.display = "";
 		document.getElementById("right-col").className = "col-lg-8";
-		if (obj) {
-			obj.innerHTML = "Hide TODO";
-		}
+		obj.innerHTML = "Hide TODO";
 	}
 }
 

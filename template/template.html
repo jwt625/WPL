@@ -11,6 +11,8 @@
     </script>
     <!-- <script type="text/javascript" src="../src/MathJax-2.6-latest/MathJax.js"></script> -->
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <link rel="stylesheet" href="../src/highlight/styles/monokai-sublime.css">
+    <script src="../src/highlight/highlight.pack.js"></script>
 </head>
 <div id="source-title" style="display:none;">
     # TODO and Courses
@@ -106,6 +108,7 @@
 <script src="../src/Blob.js"></script>
 <!-- <script src="todos.js"></script> -->
 <script src="../src/showdown.min.js"></script>
+<script src="../src/showdown-toc.js"></script>
 <!-- including callback functions: -->
 <script src="../src/callbackfuncs.js"></script>
 <script>
@@ -117,7 +120,8 @@ var converter = new showdown.Converter({
     strikethrough: true,
     parseImgDimensions: true,
     tables: true,
-    literalMidWordUnderscores: true
+    literalMidWordUnderscores: true,
+    extensions:["showdown-toc"]
 });
 html = converter.makeHtml(text);
 target.innerHTML = html;
@@ -140,5 +144,10 @@ var todoDisplayConfig = [0, 0, 0];
 
 loadAll();
 
+// load all
+function loadAll() {
+    loadJSON("todos.json", loadTODOCallBack);
+    loadJSON("courses.json", loadCoursesCallBack);
+}
 </script>
 </html>
