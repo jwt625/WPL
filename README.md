@@ -11,14 +11,8 @@ This is my personal log template using HTML and javascript. Contents are mainly 
 
 1. Clone or download the repo
 2. Add or edit TODOs in the `todos.json` file. E.g., change the `status` of a TODO from `todo` to `done`.
-2. Edit the content in `week-<week number>-columns-<2 or 3>.md` files for the second and third column in the HTML page. Write anything you want using Markdown and TeX. JSON and Markdown are easy to learn!
-3. Instead of refreshing the whole page, you can use the `Reload` button to update changes from `.json` and `.md` files to the html page. In case you have equations written in TeX, you can click the `Refresh MathJax` button to re-render equations after `Reload`.
-4. TODOs can be saved as a variable named `todosLoaded` in `todos.js` or directly as a JSON file `todos.json` using `Save TODOs`.
-5. For a new week, you can
-	1. directly copy the `template.html`, change the title in the `<title>` environment and the content in the first `<div>` environment.
-	2. create new `week-<week number>-columns-<2 or 3>.md` file to hold the content for the second and third column.
-	3. you can add a new line in `index.html` and link it to the new html file.
-	4. create new `week-<week number>` property in `todos.json` for new TODOs. The `<title>` section of the new HTML file, `week-<week number>` in todos.json and `week-<week number>` in the file name of `week-<week number>-columns-<2 or 3>.md` files should all be the same. For example, they are all currently `week-5` for this template.
+3. Edit the information about the courses in `courses.json`, the time table is generated automatically. Very easy to understand the information in the `courses.json`.
+4. Take notes about each courses in the corresponding MD file.
 
 
 ## Dependencies
