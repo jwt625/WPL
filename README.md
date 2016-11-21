@@ -1,4 +1,4 @@
-# WPL
+# WPLT
 WTJ's personal log template
 
 This is my personal log template using HTML and javascript. Contents are mainly written in Markdown and are converted to HTML. TeX is also supported by MathJax. TODOs and course Info are formatted in JSON which is very easy to edit, and it's saved in `todos.json` and `courses.json`. **Markdown and TeX** can also be used in the `content` property for TODOs.
