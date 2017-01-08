@@ -6,12 +6,16 @@
 			{
 				type: 'output', 
 				filter: function(source) {
-					console.log("sd-toc-filter func called")
 					var elements = $(source);
 					var output = [];
-					var headingLevel = null;
-					var tocId = null;
+					// two simple stack to save all levels of TOC
+					// index of TOCs in output
+					var tocIds = [];
+					// heading levels of items in corresponded TOC
+					var headingLevels = [];
+					var top = 0;
 					for (var i=0; i<elements.length; i++) {
+
 						var element = $(elements[i]);
 						var results = null;
 
@@ -19,8 +23,8 @@
 						// If so, we can replace this element with out list.
 						if (element.text().trim()=='[toc]') {
 							element = $('<ol>',{'class':'showdown-toc'});
-							headingLevel = null;
-							tocId = output.length;
+							headingLevels[top] = null;
+							tocIds[top++] = output.length;
 						}
 
 						// Does this item contain a [toc] with other stuff?
@@ -72,7 +76,7 @@
 								}
 
 								// Keep track of where our current table is in the elements array.
-								tocId = output.length;
+								tocIds[top] = output.length;
 
 								// If there was text after, push the contents onto the array and
 								// use the after part as our current element.
@@ -88,7 +92,7 @@
 
 								// Reset the heading level - we're going to start looking for new
 								// headings again
-								headingLevel = null;
+								headingLevels[top++] = null;
 
 							}
 						}
@@ -97,46 +101,60 @@
 						// look for the first header tag we encounter (after the [toc]).
 						// That's going to be what we use as contents entries for this table
 						// of contents.
-						else if (tocId && !headingLevel && element.prop("tagName")) {
-							switch (element.prop("tagName")) {
-								case 'H1':
-								case 'H2':
-								case 'H3':
-								case 'H4':
-								case 'H5':
-								case 'H6':
-									headingLevel = parseInt(element.prop('tagName').substr(1));
-									break;
+						else {
+							for (var j = top - 1; j >= 0; j--) {
+								if (tocIds[j] && !headingLevels[j] && element.prop("tagName")) {
+									switch (element.prop("tagName")) {
+										case 'H1':
+										case 'H2':
+										case 'H3':
+										case 'H4':
+										case 'H5':
+										case 'H6':
+											headingLevels[j] = parseInt(element.prop('tagName').substr(1));
+											break;
+									}
+								}
 							}
-						}
+						} 
+							
 
 						// If we know what header level we're looking for (either we just
 						// found it above, or we're continuing to look for more) then check to
 						// see if this heading should be added to the contents.
-						if (tocId && headingLevel) {
-							switch (element.prop('tagName')) {
-								case 'H1':
-								case 'H2':
-								case 'H3':
-								case 'H4':
-								case 'H5':
-								case 'H6':
-									var thisLevel = parseInt(element.prop('tagName').substr(1));
-									if (thisLevel==headingLevel) {
-										output[tocId] = $(output[tocId]).append($('<li>').append($('<a>',{href:'#'+element.attr('id'),text:element.text()})));
-									}
-									// If we move up in what would be the document tree
-									// (eg: if we're looking for H2 and we suddenly find an
-									// H1) then we can probably safely assume that we want
-									// the table of contents to end for this section.
-									else if (thisLevel<headingLevel) {
-										toc = null
-										tocId = null;
-										headingLevel = null;
-									}
+						var levelFound = false;
+						for (var j = top - 1; j >= 0; j--) {
+							if (!tocIds[j]) {
+								continue;
+							}
+							if (tocIds[j] && headingLevels[j]) {
+								switch (element.prop('tagName')) {
+									case 'H1':
+									case 'H2':
+									case 'H3':
+									case 'H4':
+									case 'H5':
+									case 'H6':
+										var thisLevel = parseInt(element.prop('tagName').substr(1));
+										if (thisLevel==headingLevels[j]) {
+											levelFound = true;
+											output[tocIds[j]] = $(output[tocIds[j]]).append($('<li>').append($('<a>',{href:'#'+element.attr('id'),text:element.text()})));
+										}
+										// If we move up in what would be the document tree
+										// (eg: if we're looking for H2 and we suddenly find an
+										// H1) then we can probably safely assume that we want
+										// the table of contents to end for this section.
+										else if (thisLevel<headingLevels[j]) {
+											top--;
+										}
+										break;
+								}
+								if (levelFound) {
 									break;
+								}
 							}
 						}
+						
 						// Push whatever element we've been looking at onto the output array.
 						output.push(element);
 					}
@@ -150,9 +168,9 @@
 	};
 
 	// Client-side export
-	// if (typeof window !== 'undefined' && window.showdown && window.showdown.extensions) { window.showdown.extensions.toc = toc; }
 	if (typeof window !== 'undefined' && window.showdown && window.showdown.extension) { window.showdown.extension("showdown-toc",toc); }
 	// Server-side export
 	if (typeof module !== 'undefined') module.exports = toc;
 
 }());
+
