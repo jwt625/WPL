@@ -17,10 +17,13 @@ function loadJSON(sourcefile, callback) {
 // It takes two parameters, the first one gives the directory of the .md files to load, the second parameter is the id of the element where the converted HTML will be added into.
 // For example, here the file name is the 
 // TITLE of this HTML, and the id of the element is "target-column".
+// 
+// now sourcefile can be a list of files, like
+// ["file1.md", "file2.md"]
 function loadMD(sourcefile, targetid) {
 	if (typeof sourcefile == "string") {
 		jQuery.get(sourcefile, function(data) {
-			html = converter.makeHtml(data);
+			var html = converter.makeHtml(data);
 			document.getElementById(targetid).innerHTML = html;
 			refreshMathJax();
 		});
@@ -28,6 +31,15 @@ function loadMD(sourcefile, targetid) {
 		loadMDs(sourcefile, targetid);
 	}
 };
+
+// load Graphviz code and generate image
+// image generated will be put in element with targetid
+function loadViz(source, targetid) {
+	jQuery.get(source, function(data){
+		var image = Viz(data, { format: "png-image-element" });
+		document.getElementById(targetid).appendChild(image);
+	});
+}
 
 // load multiple MD files to one target
 function loadMDs(sourcefiles, targetid, tmpdata) {

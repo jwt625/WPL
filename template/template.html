@@ -100,6 +100,14 @@
                 </div>
             </div> -->
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+            <h1>Test loadViz:</h1>
+                <div class="bs-component">
+                    <div id="target-c2-r3"></div>
+                </div>       
+            </div>               
+        </div>
     </div>
 </body>
 <script src="../src/jquery-3.1.1.min.js"></script>
@@ -111,6 +119,7 @@
 <script src="../src/showdown-toc.js"></script>
 <!-- including callback functions: -->
 <script src="../src/callbackfuncs.js"></script>
+<script src="../src/viz.js"></script>
 <script>
 text = document.getElementById('source-title').innerHTML;
 target = document.getElementById('target-title');
@@ -142,12 +151,10 @@ target.innerHTML = html;
 
 var todoDisplayConfig = [0, 0, 0];
 
-loadAll();
 
-// load all
-function loadAll() {
-    loadJSON("todos.json", loadTODOCallBack);
-    loadJSON("courses.json", loadCoursesCallBack);
-}
+loadJSON("todos.json", loadTODOCallBack);
+loadJSON("courses.json", loadCoursesCallBack);
+loadViz("test.gv", "target-c2-r3");
+
 </script>
 </html>

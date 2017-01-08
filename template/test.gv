@@ -1,0 +1,137 @@
+// http://www.graphviz.org/content/cluster
+
+digraph G {
+
+	subgraph cluster_FS725 {
+		label="FS725\nRubidium\nFrequency\nStandard";
+		FS725_10MHz[label="10MHz Output"];
+	}
+
+	subgraph cluster_PC {
+		PC_GPIB[label="GPIB"];
+		PC_LAN[label="LAN"];
+		subgraph cluster_DataColle {
+			label="Data Collection Board";
+			ECLK;
+			PC_Trig_In[label="Trig in"];
+			PC_ChA[label="Ch A"];
+			PC_ChB[label="Ch B"];
+		}
+		label = "PC";
+	}
+
+
+	subgraph cluster_AWG {
+		label = "AWG";
+		subgraph cluster_AWG_input {
+			label="Input";
+			AWG_LAN[label="LAN"];
+			AWG_trig[label="Trig"];
+			AWG_Ref[label="Ref Clock Input"];
+		}
+		subgraph cluster_AWG_Output {
+			label ="Output";			AWG_Ch1Mk1[label="Ch1 Mk1"];
+			AWG_Ch1Mk2[label="Ch1 Mk2"];
+			AWG_Ch2Mk1[label="Ch2 Mk1"]
+		}
+	}
+
+	subgraph cluster_ASG_A {
+		subgraph cluster_51 {
+			Pulse1 [label="Pulse"];
+			ASG_A_Ref [label="REF IN"];
+			label="Input";
+		}
+		subgraph cluster_52 {
+			ASG_A_RFOut [label="RF Output"];
+			label="Output";
+		}
+		label = "ASG\nN5183A";
+	}
+
+	subgraph cluster_ASG_B1 {
+		subgraph cluster_61 {
+			Pulse2 [label="Pulse"];
+			ASG_B1_Ref [label="REF IN"];
+			label="Input";
+		}
+		subgraph cluster_62 {
+			ASG_B1_RFOut[label="RF Output"];
+			label="Output";
+		}
+		label = "ASG\nN5183B";
+	}
+
+	subgraph cluster_ASG_B2 {
+		subgraph cluster_71 {
+			Pulse3 [label="Pulse"];
+			ASG_B2_Ref [label="REF IN"];
+			label="Input";
+		}
+		subgraph cluster_72 {
+			ASG_B2_RFOut[label="RF Output"];
+			label="Output";
+		}
+		label = "ASG\nN5183B-2";
+	}
+
+	subgraph cluster_DG645 {
+		label = "DG645";
+		DG645_TimeBase[label="10MHz Time Base"];
+		DG645Output[label="Output"];
+	}
+
+
+	subgraph cluster_add1 {
+		label="ADD";
+		O1[label="O"];
+		O2[label="O"];
+		I1[label="I"];
+	}
+
+
+	HPF[label="HPF\n2900~8700MHz"];
+	ZVA1[label="ZVA-213-S+"];
+	ZVA2[label="ZVA-213-S+"];
+
+	subgraph cluster_IQ {
+		label = "IQ mixer";
+		IQ_L[label="L"];
+		IQ_R[label="R"];
+		IQ_Q[label="Q"];
+		IQ_I[label="I"];
+	}
+
+	// four channel DC to 350MHzz Amplifier
+	subgraph cluster_SR445A {
+		label="SR445A\nFour Channel DC to 350MHz Amplifier";
+		SR445A_Ch1In[label="Ch1 In"];
+		SR445A_Ch2In[label="Ch2 In"];
+		SR445A_Ch1Out[label="Ch1 Out"];
+		SR445A_Ch2Out[label="Ch2 Out"];
+	}
+
+
+	// connections:
+	FS725_10MHz->ECLK;
+	FS725_10MHz->AWG_Ref;
+	FS725_10MHz->DG645_TimeBase;
+	FS725_10MHz->ASG_A_Ref;
+	FS725_10MHz->ASG_B1_Ref;
+	FS725_10MHz->ASG_B2_Ref;
+	DG645Output->AWG_trig;
+	PC_LAN -> AWG_LAN;
+	AWG_Ch1Mk1->Pulse1;
+	AWG_Ch1Mk2->Pulse2;
+	ASG_A_RFOut->O1;
+	ASG_B1_RFOut->O2;
+	I1->device[label="port 12(3)"]
+	device->HPF->ZVA1->ZVA2->IQ_R;
+	ASG_B2_RFOut->IQ_L;
+	AWG_Ch2Mk1->PC_Trig_In;
+	IQ_I->SR445A_Ch2In;
+	IQ_Q->SR445A_Ch1In;
+	SR445A_Ch2Out->PC_ChA;
+	SR445A_Ch1Out->PC_ChB;
+
+}
