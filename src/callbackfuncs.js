@@ -26,6 +26,7 @@ function loadMD(sourcefile, targetid) {
 			var html = converter.makeHtml(data);
 			document.getElementById(targetid).innerHTML = html;
 			refreshMathJax();
+			highLight();
 		});
 	} else {
 		loadMDs(sourcefile, targetid);
@@ -54,6 +55,7 @@ function loadMDs(sourcefiles, targetid, tmpdata) {
 			var html = converter.makeHtml(tmpdata)
 			document.getElementById(targetid).innerHTML = html;
 			refreshMathJax();
+			highLight();
 		}
 	});
 }
