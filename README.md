@@ -23,6 +23,7 @@ This is my personal log template using HTML and javascript. Contents are mainly 
 - [Bootswatch](http://bootswatch.com) and [Bootstrap](http://getbootstrap.com/) for theme.
 - [jQuery](https://jquery.com/) is required by Bootstrap.
 - [FileSaver.js](https://github.com/eligrey/FileSaver.js) for saving TODOs to .js or .json file. [Blob.js](https://github.com/eligrey/Blob.js) might be required for some browser.
+- [viz.js](https://github.com/mdaines/viz.js) for [Graphviz](http://www.graphviz.org/).
 
 The above dependencies are already included in the project files and all the functionalities can work offline. You can find them in `/src/` and do not need to worry about.
 
