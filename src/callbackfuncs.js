@@ -35,10 +35,20 @@ function loadMD(sourcefile, targetid) {
 
 // load Graphviz code and generate image
 // image generated will be put in element with targetid
-function loadViz(source, targetid) {
+// if option == true, generate png file
+function loadViz(source, targetid, option) {
 	jQuery.get(source, function(data){
-		var image = Viz(data, { format: "png-image-element" });
-		document.getElementById(targetid).appendChild(image);
+		if (option) {
+			// generate image and append
+			var image = Viz(data, { format: "png-image-element" });
+			document.getElementById(targetid).appendChild(image);			
+		} else {
+			// generate and pick out svg element, and append	
+			var res = Viz(data);
+			var svg = $(res);
+			svg = svg[svg.length-1];
+			document.getElementById(targetid).appendChild(svg);			
+		}
 	});
 }
 
