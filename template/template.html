@@ -152,8 +152,16 @@ target.innerHTML = html;
 var todoDisplayConfig = [0, 0, 0];
 
 
-loadJSON("todos.json", loadTODOCallBack);
-loadJSON("courses.json", loadCoursesCallBack);
+loadCol1();
+loadCol2();
+
+function loadCol1() {
+    loadJSON("todos.json", loadTODOCallBack);
+}
+
+function loadCol2() {
+    loadJSON("courses.json", loadCoursesCallBack);
+}
 loadViz("test.gv", "target-c2-r3");
 
 </script>

@@ -134,13 +134,15 @@ function keydown(e) {
 			loadAll();
 			break;
 		// reload col 1, i.e., TODO
+		// Define the loadCol1() function in HTML file
 		case "1":
-			loadJSON("todos.json", loadTODOCallBack);
+			loadCol1();
 			break;
 		// reload col 2
+		// Define the loadCol2() function in HTML file
 		case "2":
-			loadJSON("courses.json", loadCoursesCallBack);
-		break;
+			loadCol2();
+			break;
 		// display TODO todo
 		case "t":
 			selectStatusClicked({"innerHTML":"todo"});
