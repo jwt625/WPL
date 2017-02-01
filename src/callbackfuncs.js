@@ -33,6 +33,24 @@ function loadMD(sourcefile, targetid) {
 	}
 };
 
+// load multiple MD files to one target
+function loadMDs(sourcefiles, targetid, tmpdata) {
+	if (!tmpdata) {
+		var tmpdata = "";
+	}
+	jQuery.get(sourcefiles[0], function(data) {
+		tmpdata = tmpdata + data + "\n";
+		if (sourcefiles.length > 1) {
+			loadMDs(sourcefiles.slice(1, sourcefiles.length), targetid, tmpdata);
+		} else {
+			var html = converter.makeHtml(tmpdata)
+			document.getElementById(targetid).innerHTML = html;
+			refreshMathJax();
+			highLight();
+		}
+	});
+}
+
 // load Graphviz code and generate image
 // image generated will be put in element with targetid
 // if option == true, generate png file
@@ -52,23 +70,6 @@ function loadViz(source, targetid, option) {
 	});
 }
 
-// load multiple MD files to one target
-function loadMDs(sourcefiles, targetid, tmpdata) {
-	if (!tmpdata) {
-		var tmpdata = "";
-	}
-	jQuery.get(sourcefiles[0], function(data) {
-		tmpdata = tmpdata + data + "\n";
-		if (sourcefiles.length > 1) {
-			loadMDs(sourcefiles.slice(1, sourcefiles.length), targetid, tmpdata);
-		} else {
-			var html = converter.makeHtml(tmpdata)
-			document.getElementById(targetid).innerHTML = html;
-			refreshMathJax();
-			highLight();
-		}
-	});
-}
 
 function highLight() {
 	$(document).ready(function() {
@@ -76,6 +77,26 @@ function highLight() {
 			hljs.highlightBlock(block);
 		});
 	});
+}
+
+
+function refreshMathInViz() {
+	var mathJaxSVGElems = document.getElementsByClassName('MathJax_SVG');
+	for (var i = mathJaxSVGElems.length - 1; i >= 0; i--) {
+		var elem = mathJaxSVGElems[i];
+		if (elem.parentNode.tagName.toUpperCase() == "TEXT") {
+			var txtElem = elem.parentNode;
+			var svgElem = elem.firstChild;
+			// alter the position of the MathJax SVG (upper left corner)
+			svgElem.setAttribute('x',txtElem.getAttribute('x'));
+			svgElem.setAttribute('y',txtElem.getAttribute('y'));
+			// replace the original text with the SVG element
+			txtElem.parentNode.replaceChild(svgElem, txtElem);
+			// move the center of the SVG element to the expected position
+			svgElem.setAttribute('x', parseFloat(svgElem.getAttribute('x')) - svgElem.getBoundingClientRect().width/2)
+			svgElem.setAttribute('y', parseFloat(svgElem.getAttribute('y')) - svgElem.getBoundingClientRect().height/2)
+		}
+	}
 }
 
 function loadMDByTitle(targetid) {
@@ -166,6 +187,9 @@ function keydown(e) {
 		// syntax highlight
 		case "h":
 			highLight();
+			break;
+		case "m":
+			refreshMathInViz();
 			break;
 		default:
 			break;
