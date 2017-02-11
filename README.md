@@ -59,6 +59,7 @@ to enable local file access for chrome.
 - You have to push `h` to run code highlight (since there's not always some code to highlight)
 - If you are not familiar with TeX or MathJax, see [MathJax basic tutorial and quick reference](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
+<!--
 ## TODO
 - [x] automatically generate date selection buttons
 - [x] automatically generate tag selection buttons
@@ -66,6 +67,7 @@ to enable local file access for chrome.
 - [x] read markdown from file
 - [x] add load and refresh
 - [ ] enable multiple tags for one todo.
+-->
 
 ## Acknowledgement
 - Thank [Chris](https://github.com/CSarabalis) for introducing logging using markdown-to-html to me :)
