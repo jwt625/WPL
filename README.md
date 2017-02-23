@@ -18,7 +18,7 @@ This is my personal log template using HTML and javascript. Contents are mainly 
 ## Dependencies
 
 - [Showdown](https://github.com/showdownjs/showdown) for Markdown to HTML conversion.
-- [showdown-toc](https://github.com/ravisorg/showdown-toc) for generating table of content.
+- [showdown-toc](https://github.com/jwt625/showdown-toc) for generating table of content.
 - [highlight.js](https://highlightjs.org/)
 - [Bootswatch](http://bootswatch.com) and [Bootstrap](http://getbootstrap.com/) for theme.
 - [jQuery](https://jquery.com/) is required by Bootstrap.
